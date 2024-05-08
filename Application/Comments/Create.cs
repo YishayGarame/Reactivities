@@ -35,10 +35,10 @@ namespace Application.Comments
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
-            private readonly IUserAccessor _userAccesor;
+            private readonly IUserAccessor _userAccessor;
             public Handler(DataContext context, IMapper mapper, IUserAccessor userAccesor)
             {
-                _userAccesor = userAccesor;
+                _userAccessor = userAccesor;
                 _mapper = mapper;
                 _context = context;
             }
@@ -50,7 +50,7 @@ namespace Application.Comments
 
                 var user = await _context.Users
                     .Include( p => p.Photos)
-                    .SingleOrDefaultAsync(x => x.UserName == _userAccesor.GetUsername());
+                    .SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetUsername());
 
                 var comment = new Comment
                 {

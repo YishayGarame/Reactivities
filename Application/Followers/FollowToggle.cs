@@ -22,16 +22,16 @@ namespace Application.Followers
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
         private readonly DataContext _context;
-        private readonly IUserAccessor _userAccesor;
+        private readonly IUserAccessor _userAccessor;
             public Handler(DataContext context, IUserAccessor userAccesor)
             {
-                _userAccesor = userAccesor;
+                _userAccessor = userAccesor;
                 _context = context;
             }
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var observer = await _context.Users.FirstOrDefaultAsync(x =>
-                x.UserName == _userAccesor.GetUsername());
+                x.UserName == _userAccessor.GetUsername());
 
                 var target = await _context.Users.FirstOrDefaultAsync(x =>
                 x.UserName == request.TargetUsername);

@@ -19,10 +19,10 @@ namespace Application.Photos
         {
             private readonly DataContext _context;
             private readonly IPhotoAccessor _photoAccessor;
-            private readonly IUserAccessor _userAccesor;
+            private readonly IUserAccessor _userAccessor;
             public Handler(DataContext context, IPhotoAccessor photoAccessor, IUserAccessor userAccesor )
             {
-                _userAccesor = userAccesor;
+                _userAccessor = userAccesor;
                 _photoAccessor = photoAccessor;
                 _context = context;              
             }
@@ -30,7 +30,7 @@ namespace Application.Photos
             public async Task<Result<Photo>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users.Include(p => p.Photos)
-                .FirstOrDefaultAsync(x => x.UserName == _userAccesor.GetUsername());
+                .FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetUsername());
 
                 if (user == null) return null;
 

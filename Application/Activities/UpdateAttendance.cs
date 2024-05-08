@@ -17,10 +17,10 @@ namespace Application.Activities
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
-            private readonly IUserAccessor _userAccesor;    
+            private readonly IUserAccessor _userAccessor;    
             public Handler(DataContext context, IUserAccessor userAccesor)
             {
-            _userAccesor = userAccesor;
+            _userAccessor = userAccesor;
             _context = context;
                 
             }
@@ -33,7 +33,7 @@ namespace Application.Activities
                 if (activity == null) return null;
 
                 var user = await _context.Users.FirstOrDefaultAsync(x => 
-                    x.UserName == _userAccesor.GetUsername());
+                    x.UserName == _userAccessor.GetUsername());
 
                 if (user == null) return null;
 

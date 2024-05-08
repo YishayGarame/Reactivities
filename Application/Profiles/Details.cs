@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Application.Core;
 using Application.Interfaces;
 using AutoMapper;
@@ -23,10 +19,10 @@ namespace Application.Profiles
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
-            private readonly IUserAccessor _userAccesor;
+            private readonly IUserAccessor _userAccessor;
             public Handler(DataContext context, IMapper mapper, IUserAccessor userAccesor )
             {
-                _userAccesor = userAccesor;
+                _userAccessor = userAccesor;
                 _mapper = mapper;
                 _context = context;       
             }
@@ -35,7 +31,7 @@ namespace Application.Profiles
             {
                 var user = await _context.Users
                             .ProjectTo<Profile>(_mapper.ConfigurationProvider,
-                                new {currentUsername = _userAccesor.GetUsername()})
+                                new {currentUsername = _userAccessor.GetUsername()})
                             .SingleOrDefaultAsync(x => x.Username == request.Username);
                 
                 if (user == null) return null;

@@ -20,10 +20,10 @@ namespace Application.Followers
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
-            private readonly IUserAccessor _userAccesor;
+            private readonly IUserAccessor _userAccessor;
             public Handler(DataContext context, IMapper mapper, IUserAccessor userAccesor)
             {
-                _userAccesor = userAccesor;
+                _userAccessor = userAccesor;
                 _mapper = mapper;
                 _context = context;
             }
@@ -37,14 +37,14 @@ namespace Application.Followers
                         profiles = await _context.UserFollowings.Where(x => x.Target.UserName == request.Username)
                             .Select(u => u.Observer)
                             .ProjectTo<Profiles.Profile>(_mapper.ConfigurationProvider, 
-                                new {currentUsername = _userAccesor.GetUsername()})
+                                new {currentUsername = _userAccessor.GetUsername()})
                             .ToListAsync();
                         break;
                     case "following":
                         profiles = await _context.UserFollowings.Where(x => x.Observer.UserName == request.Username)
                             .Select(u => u.Target)
                             .ProjectTo<Profiles.Profile>(_mapper.ConfigurationProvider,
-                                new {currentUsername = _userAccesor.GetUsername()})
+                                new {currentUsername = _userAccessor.GetUsername()})
                             .ToListAsync();
                         break;
                 }
