@@ -47,10 +47,16 @@ Users visit the registration page where they provide necessary details such as u
 
 
 ## Technologies Used
-React.js: Frontend development framework for building user interfaces.
-SignalR: Real-time communication library for enabling chat functionality.
-ASP.NET Core: Backend framework for building RESTful APIs and handling user authentication.
-Entity Framework Core: Object-relational mapping (ORM) framework for interacting with the database.
-SQL Server: Relational database management system for storing user and activity data.
-Semantic UI: CSS framework for styling the user interface.
-Cloudinary: Cloud-based image management platform for storing and serving images.
+**React.js:** Frontend development framework for building user interfaces.
+
+**SignalR:** Real-time communication library for enabling chat functionality.
+
+**ASP.NET Core:** Backend framework for building RESTful APIs and handling user authentication.
+
+**Entity Framework Core:** Object-relational mapping (ORM) framework for interacting with the database.
+
+**SQL Server:** Relational database management system for storing user and activity data.
+
+**Semantic UI:** CSS framework for styling the user interface.
+
+**Cloudinary:** Cloud-based image management platform for storing and serving images.
